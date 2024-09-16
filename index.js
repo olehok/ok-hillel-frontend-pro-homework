@@ -2,6 +2,6 @@ let curUSDtoUAH = 26;
 let i = 10;
 
 while (i >= 10 && i <= 100) {
-    console.log(curUSDtoUAH * i);
+    console.log(`${i}$ = ${curUSDtoUAH * i}₴`);
     i = i + 10;
 }
