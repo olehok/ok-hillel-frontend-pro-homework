@@ -11,7 +11,7 @@ while (true) {
 let i = 1;
 let result = "";
 
-while (i * i <= userNum) {
+while (i * i <= userNum && i >= 1 && i <= 100) {
         result += i + ". ";
         i++;
 }
