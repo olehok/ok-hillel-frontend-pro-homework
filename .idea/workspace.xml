@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e68ca7bc-1b24-443b-8be6-b6512f09c14f" name="Changes" comment="" />
+    <list default="true" id="e68ca7bc-1b24-443b-8be6-b6512f09c14f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,12 +26,12 @@
     &quot;assignee&quot;: &quot;olehok&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/olehok/OK_FEP27082024.git&quot;,
-    &quot;accountId&quot;: &quot;e33269ab-acd9-4abd-a7f3-36f211d07851&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/olehok/OK_FEP27082024.git",
+    "accountId": "e33269ab-acd9-4abd-a7f3-36f211d07851"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -38,19 +40,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/OK/Dropbox/js/js24/OK_FEP27082024&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "disable.download.node.interpreter.editor.notification": "true",
+    "git-widget-placeholder": "hw6.1",
+    "last_opened_file_path": "C:/Users/okole/Dropbox/js/js24/OK_FEP27082024",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.editor",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -71,6 +75,14 @@
       <workItem from="1726414304231" duration="1653000" />
       <workItem from="1726425433979" duration="4293000" />
       <workItem from="1726503115840" duration="8190000" />
+      <workItem from="1726583159593" duration="985000" />
+      <workItem from="1726588383282" duration="12637000" />
+      <workItem from="1726677191450" duration="5957000" />
+      <workItem from="1726691214383" duration="53000" />
+      <workItem from="1726848667477" duration="27000" />
+      <workItem from="1726848724124" duration="7602000" />
+      <workItem from="1726952044090" duration="592000" />
+      <workItem from="1727003024105" duration="3237000" />
     </task>
     <servers />
   </component>
