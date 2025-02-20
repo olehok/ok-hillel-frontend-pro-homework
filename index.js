@@ -8,11 +8,12 @@ let toCutArr = initCutString.split('');
 
 function cutFromString(str2Cut, arrCut) {
     let initArr = str2Cut.split('');
-    let filteredArr = initArr.filter((element) => {
-        return !arrCut.includes(element)
-        }
-    )
-    return  filteredArr.join('')
+
+    for(let i = 0; i < arrCut.length; i++) {
+        initArr = initArr.filter((element) => element !== arrCut[i]);
+    }
+
+    return  initArr.join('');
 }
 
 let filteredString = cutFromString(initString, toCutArr);
