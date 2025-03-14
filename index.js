@@ -17,7 +17,7 @@ switchOn.addEventListener('click', function() {
 
     if (!table) {
         table = document.createElement('table');
-        table.style.display = 'block';
+        table.style.display = 'table';
         table.style.margin = '100px auto';
         table.style.borderCollapse = 'collapse';
         body.insertBefore(table, script);
@@ -25,7 +25,6 @@ switchOn.addEventListener('click', function() {
         for (let i = 1; i <= 10; i++) {
             const row = document.createElement('tr');
             table.appendChild(row);
-            // let sum = 1;
             for (let j = 1; j <= 10; j++) {
                 const cell = document.createElement('td');
                 row.appendChild(cell);
@@ -39,6 +38,6 @@ switchOn.addEventListener('click', function() {
         }
     }
     else {
-            table.style.display = table.style.display === 'none' ? 'block' : 'none';
+            table.style.display = table.style.display === 'none' ? 'table' : 'none';
         }
 })
