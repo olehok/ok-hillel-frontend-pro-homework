@@ -1,0 +1,116 @@
+* {
+    font-size: 18px;
+    font-family: arial, sans-serif;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+}
+
+label {
+    display: inline-block;
+    width: 100%;
+    margin: 5px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.container div {
+    display: flex;
+}
+
+#input, .edit-input {
+    width: 100%;
+    padding: 10px;
+    border: #d0d0d0 solid 1px;
+}
+
+#btn {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    width: 120px;
+    color: white;
+    background-color: cornflowerblue;
+    cursor: pointer;
+    border: cornflowerblue 1px solid;
+}
+
+#btn:hover {
+    background-color: #3979ec;
+    border-color: #3979ec;
+}
+
+.btnDel {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px 5px 5px 2px;
+    width: 51px;
+    color: white;
+    background-color: #d4e3fb;
+    cursor: pointer;
+    border: #d4e3fb 1px solid;
+}
+
+.btnDel:hover {
+    background-color: #ff5b5b;
+    border-color: #ff5b5b;
+}
+
+.btnCross {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px 2px 5px 5px;
+    width: 50px;
+    color: white;
+    background-color: #d4e3fb;
+    cursor: pointer;
+    border: #d4e3fb 1px solid;
+}
+
+.btnCross:hover {
+    text-decoration: line-through;
+    background-color: #8b96a6;
+    border-color: #8b96a6;
+}
+
+.task {
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #b5d0ff;
+    background-color: #b5d0ff;
+    font-size: 18px;
+    overflow: auto;
+    cursor: text;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.done {
+    text-decoration: line-through;
+    color: #959595;
+    background-color: #e3ebfa;
+    border-color: #e3ebfa;
+}
