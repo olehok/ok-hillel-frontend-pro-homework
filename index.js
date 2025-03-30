@@ -9,9 +9,18 @@
 
 const input = document.querySelector("#input");
 const toDoList = document.querySelector("#todolist");
+let isEditing = false;
 
 toDoList.addEventListener("click", (e) => {
     if (e.target.classList.contains("task")) {
+        if (isEditing) return;
+        isEditing = true;
+
+        const existingEditInput = document.querySelector(".edit-input");
+        if (existingEditInput) {
+            finishEdit(existingEditInput);
+        }
+
         const taskEdit = document.createElement("input");
         taskEdit.classList.add("edit-input");
         taskEdit.type = "text";
@@ -19,12 +28,22 @@ toDoList.addEventListener("click", (e) => {
         e.target.replaceWith(taskEdit);
         taskEdit.focus();
 
-        taskEdit.addEventListener("blur", () => {
-            const editedTask = document.createElement("p");
-            editedTask.classList.add("task");
-            editedTask.textContent = taskEdit.value.trim();
-            taskEdit.replaceWith(editedTask);
-        })
+        const blurHandler = () => {
+            finishEdit(taskEdit);
+            isEditing = false;
+            taskEdit.removeEventListener("blur", blurHandler);
+        };
+
+        taskEdit.addEventListener("blur", blurHandler);
+
+        taskEdit.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                finishEdit(taskEdit);
+                isEditing = false;
+                taskEdit.removeEventListener("blur", blurHandler);
+            }
+        });
+
     } else if (e.target.classList.contains("btnDel")) {
         e.target.parentNode.remove();
     } else if (e.target.classList.contains("btnCross")) {
@@ -32,7 +51,37 @@ toDoList.addEventListener("click", (e) => {
     }
 });
 
-document.querySelector("#btn").addEventListener("click", () => {
+function finishEdit(taskEdit) {
+    if (
+        !taskEdit ||
+        !taskEdit.parentElement ||
+        !document.body.contains(taskEdit)
+    ) return;
+
+    // Захист від повторного finishEdit
+    if (taskEdit.dataset.edited === "true") return;
+    taskEdit.dataset.edited = "true";
+
+    const newValue = taskEdit.value.trim();
+
+    if (newValue) {
+        const editedTask = document.createElement("p");
+        editedTask.classList.add("task");
+        editedTask.textContent = newValue;
+        taskEdit.replaceWith(editedTask);
+    } else {
+        taskEdit.remove();
+    }
+}
+
+document.querySelector("#btn").addEventListener("click", addNewTask);
+input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        addNewTask();
+    }
+});
+
+function addNewTask() {
     if (input.value.trim()) {
         const item = document.createElement("li");
         toDoList.appendChild(item);
@@ -57,9 +106,8 @@ document.querySelector("#btn").addEventListener("click", () => {
     } else {
         input.style.background = "#ffbaba";
     }
-
-})
+}
 
 input.addEventListener("click", () => {
     input.style.background = "white";
-})
+});
