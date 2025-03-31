@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    outline: none;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    gap: 30px;
+    position: relative;
+}
+
+label {
+    display: block;
+    position: relative;
+}
+
+input, textarea {
+    width: 100%;
+    min-height: 30px;
+    border-radius: 8px;
+    padding: 15px;
+    border: 2px solid cornflowerblue;
+    resize: none;
+    overflow: auto;
+}
+
+button {
+    min-height: 30px;
+    border-radius: 8px;
+    padding: 10px;
+    border: 2px solid cornflowerblue;
+    width: 100%;
+    align-self: center;
+    cursor: pointer;
+    color: cornflowerblue;
+}
+
+.error {
+    color: red;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+}
+
+.submitted {
+    display: block;
+    font-size: 20px;
+    color: darkolivegreen;
+    position: absolute;
+    bottom: -5px;
+    left: 36%;
+}

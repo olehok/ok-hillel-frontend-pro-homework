@@ -6,6 +6,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<form class="form" action="#">
+    <label for="name">
+        <input id="name" type="text" placeholder="Name">
+        <span class="error" id="nameEr"></span>
+    </label>
+    <label for="textArea">
+        <textarea id="textArea" placeholder="Message"></textarea>
+        <span class="error" id="textAreaEr"></span>
+    </label>
+    <label for="tel">
+        <input id="tel" type="tel" placeholder="Tel">
+        <span class="error" id="telEr"></span>
+    </label>
+    <label for="email">
+        <input id="email" type="text" placeholder="Email">
+        <span class="error" id="emailEr"></span>
+    </label>
+    <button type="submit">Submit</button>
+    <span class="submitted"></span>
+</form>
 <script src="script.js"></script>
 </body>
 </html>
