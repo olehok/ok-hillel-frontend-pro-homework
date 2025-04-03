@@ -13,22 +13,22 @@ const itemCollection = [{
 },
     {
         id: 2,
-        img: "/image14/04c_Page_098.jpg",
+        img: "./image14/04c_Page_098.jpg",
         name: "Column2",
     },
     {
         id: 3,
-        img: "/image14/04c_Page_003.jpg",
+        img: "./image14/04c_Page_003.jpg",
         name: "Column3",
     },
     {
         id: 4,
-        img: "/image14/04c_Page_074.jpg",
+        img: "./image14/04c_Page_074.jpg",
         name: "Column4",
     },
     {
         id: 5,
-        img: "/image14/04c_Page_040.jpg",
+        img: "./image14/04c_Page_040.jpg",
         name: "Column5",
     },
 ];
