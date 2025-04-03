@@ -8,7 +8,7 @@
 
 const itemCollection = [{
     id: 1,
-    img: "/image14/04c_Page_006.jpg",
+    img: "./image14/04c_Page_006.jpg",
     name: "Column1",
 },
     {
