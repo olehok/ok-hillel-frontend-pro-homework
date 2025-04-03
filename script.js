@@ -109,6 +109,3 @@ slider.addEventListener("click", (e) => {
 
     }
 });
-
-
-
