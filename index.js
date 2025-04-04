@@ -58,7 +58,6 @@ function finishEdit(taskEdit) {
         !document.body.contains(taskEdit)
     ) return;
 
-    // Захист від повторного finishEdit
     if (taskEdit.dataset.edited === "true") return;
     taskEdit.dataset.edited = "true";
 
