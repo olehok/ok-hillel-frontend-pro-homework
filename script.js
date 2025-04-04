@@ -106,6 +106,5 @@ slider.addEventListener("click", (e) => {
             hideSlideButtons(currentIndex);
             showSlide(currentIndex);
         }
-
     }
 });
