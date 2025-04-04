@@ -38,6 +38,7 @@ function validateForm() {
         form.querySelector('#emailEr').innerText = 'Email is not valid';
         isValid = false;
     }
+
     console.log(isValid);
     return isValid;
 }
