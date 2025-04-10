@@ -2,68 +2,92 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    line-height: 1.2;
+    font-family: Arial, sans-serif;
     font-size: 18px;
-    background-color: #66deb2;
 }
-
-h1, h2 {
+h1 {
+    font-size: 22px;
     text-align: center;
-    margin-bottom: 15px;
+    margin: 15px;
 }
-
 .container {
     width: 100%;
     margin: 0 auto;
-    max-width: 75%;
+    max-width: 50%;
 }
-
 .form {
-    background: #fff;
-    padding: 10px;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    background: #ffffff;
+    margin: 25px 0;
     display: flex;
     justify-content: center;
 }
-
-.form__input {
-    min-height: 25px;
-    padding: 10px;
+.form label {
+    display: block;
     width: 100%;
-    border: 1px solid;
+    margin-right: 5px;
 }
-
+.form__input {
+    min-height: 20px;
+    padding: 8px;
+    width: 100%;
+    border: 2px solid #a6c3bb;
+    border-radius: 20px;
+}
 .form__btn {
-    background: #0be69d;
+    background: #a6c3bb;
+    color: #ffffff;
     border: none;
     cursor: pointer;
-    width: 100px;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 5px;
+    padding: 5px;
+    font-size: 20px;
 }
-
 .todo-item {
     display: flex;
-    padding: 10px;
+    padding: 6px;
     background: #fff;
-    border-radius: 10px;
+    border: 2px solid #a6c3bb;
+    border-radius: 22px;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
+.todo-item label {
+    display: inline-flex;
+    align-items: center;
+    margin: 5px;
+}
 .todo-item--checked {
     text-decoration: line-through;
+    color: #ffffff;
+    background-color: #c7e1dd;
+    border-color: #c7e1dd;
 }
 .todo-item__description {
     flex-grow: 1;
-    padding-left: 10px;
+    margin: 0 10px;
+    overflow: auto;
 }
-.todo-item__delete {
-    background: #0be69d;
+.todo-item__delete, .delete_all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #a6c3bb;
+    color: #ffffff;
     border: none;
     cursor: pointer;
-    width: 95px;
-    padding: 10px;
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+}
+.delete_all {
+    margin: 0 auto;
+    width: 40px;
+    height: 40px;
 }
