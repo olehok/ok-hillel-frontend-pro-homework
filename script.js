@@ -1,3 +1,9 @@
+// Доробити todolist, в якому буде можливість:
+// Додати завдання
+// Видалити завдання
+// Відзначити як виконане
+// Усі дані повинні зберегтися після перезавантаження сторінки.
+
 // base
 const form = document.querySelector(".js--form");
 const todoList = document.querySelector(".js--todos-wrapper");
