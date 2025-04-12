@@ -1,8 +1,80 @@
+// Доробити todolist, в якому буде можливість:
+// Додати завдання
+// Видалити завдання
+// Відзначити як виконану
+// Усі дані повинні зберегтися після перезавантаження сторінки.
+
 const input = document.querySelector("#input");
 const toDoList = document.querySelector("#todolist");
 let isEditing = false;
+let taskList;
 
+document.addEventListener("DOMContentLoaded", () => {
+    taskList = JSON.parse(localStorage.getItem('taskList')) || [];
+    // taskList.forEach(task => {
+    //     task.toggleCross = function () {
+    //         this.crossed = !this.crossed;
+    //     };
+    //     addNewTask(task);
+    // });
+    taskList.forEach(task => addNewTask(task));
+    // taskList.forEach(addNewTask);
+});
+
+console.log(JSON.parse(localStorage.getItem('taskList')))
+
+// functions
+function saveToLocalStorage() {
+    localStorage.setItem('taskList', JSON.stringify(taskList));
+}
+
+function finishEdit(taskEdit) {
+    if (
+        !taskEdit ||
+        !taskEdit.parentElement ||
+        !document.body.contains(taskEdit)
+    ) return;
+
+    if (taskEdit.dataset.edited === "true") return;
+    taskEdit.dataset.edited = "true";
+
+    const newValue = taskEdit.value.trim();
+
+    if (newValue) {
+        const editedTask = document.createElement("p");
+        editedTask.classList.add("task");
+        editedTask.textContent = newValue;
+        taskEdit.replaceWith(editedTask);
+    } else {
+        taskEdit.remove();
+    }
+}
+
+function addNewTask(newTask) {
+    const task = document.createElement("li");
+    task.setAttribute('data-id', newTask.id);
+    task.innerHTML = `
+            <p class="task ${newTask.crossed ? 'done' : '' }">${newTask.text}</p>
+            <button class="btnCross">c</button>
+            <button class="btnDel">del</button>
+        `;
+    toDoList.appendChild(task);
+}
+
+function newTaskObject(text) {
+    return {
+        id: Date.now().toString(),
+        text,
+        crossed: false,
+        // toggleCross() {
+        //     this.crossed = !this.crossed;
+        // }
+    };
+}
+
+// Events
 toDoList.addEventListener("click", (e) => {
+    const targetId = +e.target.closest('li').dataset.id;
     if (e.target.classList.contains("task")) {
         if (isEditing) return;
         isEditing = true;
@@ -34,70 +106,57 @@ toDoList.addEventListener("click", (e) => {
                 taskEdit.removeEventListener("blur", blurHandler);
             }
         });
+        saveToLocalStorage();
+    }
 
-    } else if (e.target.classList.contains("btnDel")) {
-        e.target.parentNode.remove();
-    } else if (e.target.classList.contains("btnCross")) {
-        e.target.parentElement.querySelector(".task").classList.toggle("done");
+    if (e.target.classList.contains("btnDel")) {
+        e.target.closest('li').remove();
+        taskList = taskList.filter((task) => +task.id !== targetId);
+        saveToLocalStorage();
+    }
+
+    if (e.target.classList.contains("btnCross")) {
+        const crossedTask = taskList.find(task => task.id === targetId);
+        crossedTask.crossed = !crossedTask.crossed;
+        saveToLocalStorage();
+        e.target.parentElement.querySelector(".task").classList.toggle("done", crossedTask.crossed);
     }
 });
 
-function finishEdit(taskEdit) {
-    if (
-        !taskEdit ||
-        !taskEdit.parentElement ||
-        !document.body.contains(taskEdit)
-    ) return;
-
-    if (taskEdit.dataset.edited === "true") return;
-    taskEdit.dataset.edited = "true";
-
-    const newValue = taskEdit.value.trim();
-
-    if (newValue) {
-        const editedTask = document.createElement("p");
-        editedTask.classList.add("task");
-        editedTask.textContent = newValue;
-        taskEdit.replaceWith(editedTask);
-    } else {
-        taskEdit.remove();
-    }
-}
-
-document.querySelector("#btn").addEventListener("click", addNewTask);
-input.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        addNewTask();
-    }
+input.addEventListener("click", () => {
+    input.style.background = "white";
 });
 
-function addNewTask() {
+document.querySelector("#btn").addEventListener("click", () => {
     if (input.value.trim()) {
-        const item = document.createElement("li");
-        toDoList.appendChild(item);
-
-        const task = document.createElement("p");
-        task.classList.add("task");
-        task.textContent = input.value.trim();
-        item.appendChild(task);
-
-        const btnCross = document.createElement("button");
-        btnCross.classList.add("btnCross");
-        btnCross.textContent = "c";
-        item.appendChild(btnCross);
-
-        const btnDel = document.createElement("button");
-        btnDel.classList.add("btnDel");
-        btnDel.textContent = "del";
-        item.appendChild(btnDel);
-
+        let text = input.value.trim();
+        const newTask = newTaskObject(text);
+        // const newTask = {
+        //     id: Date.now().toString(),
+        //     text,
+        //     crossed: false,
+        //     toggleCross() {
+        //         this.crossed = !this.crossed;
+        //     }
+        // };
+        taskList.push(newTask);
+        saveToLocalStorage();
+        addNewTask(newTask);
         input.value = "";
         input.focus();
     } else {
         input.style.background = "#ffbaba";
     }
-}
+});
 
-input.addEventListener("click", () => {
-    input.style.background = "white";
+input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        let text = input.value.trim();
+        const newTask = newTaskObject(text);
+        taskList.push(newTask);
+        saveToLocalStorage();
+        addNewTask(newTask);
+        input.value = "";
+        input.focus();
+    }
 });
