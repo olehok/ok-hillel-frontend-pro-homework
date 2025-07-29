@@ -49,6 +49,9 @@ let initialTimeInput = document.querySelector('#inputTime');
 let initialTime = 85; // довільний початковий час
 let timerId = null;
 
+initialTimeInput.value = initialTime;
+time.textContent = formatTime(initialTime);
+
 initialTimeInput.addEventListener('change', (e) => {
     const setValue = Number(e.target.value);
     initialTime = (!isNaN(setValue) && setValue > 0) ? setValue : 0;
@@ -59,9 +62,9 @@ document.querySelector('#start').addEventListener('click', startTimer);
 document.querySelector('#pause').addEventListener('click', pauseTimer);
 document.querySelector('#reset').addEventListener('click', () => {
     pauseTimer();
-    initialTime = 0;
+    const setValue = Number(initialTimeInput.value);
+    initialTime = (!isNaN(setValue) && setValue > 0) ? setValue : 0;
     time.textContent = formatTime(initialTime);
-    initialTimeInput.value = '';
 });
 
 document.addEventListener('keydown', (e) => {
