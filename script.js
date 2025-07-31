@@ -30,11 +30,12 @@ function updateTime() {
 }
 
 function updateBackgroundByTemp(temp) {
-    const limitedTemp = Math.min(Math.max(temp, -5), 30);
-    const hue = 240 - ((limitedTemp + 5) / 35) * 240;
+    const limitedTemp = Math.min(Math.max(temp, -5), 32);
+    const hue = 240 - ((limitedTemp + 5) / 37) * 240;
     document.body.style.backgroundColor = `hsl(${hue}, 100%, 70%)`;
 }
 
+// let city = !city ? "одеса,UA" : city;
 let city = "одеса,UA";
 
 document.querySelector("#inputCity").addEventListener("change", (e) => {
