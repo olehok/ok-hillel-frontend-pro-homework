@@ -7,13 +7,16 @@ const postTitle = document.querySelector('#post-title');
 const postText = document.querySelector('#post-text');
 const postTips = document.querySelector('#post-tips');
 
-function loadPosts() {
-    fetch(apiUrl + '/posts?_limit=5.').then(response => {
-        return response.json()
-    }).then(posts => {
+async function loadPosts() {
+    try {
+        const response = await fetch(apiUrl + '/posts?_limit=5.');
+        const posts = await response.json();
+        if (!response.ok) return;
         postsContainer.innerHTML = '';
         posts.forEach(post => addPostToDOM(post));
-    }).catch(error => console.error(error));
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 function addPostToDOM(post) {
@@ -31,49 +34,54 @@ function addPostToDOM(post) {
     postsContainer.appendChild(postEl);
 }
 
-function loadComments(e, postId) {
-    fetch(apiUrl + `/posts/${postId}/comments?_limit=2`)
-        .then(response => {
-            return response.json()
-        })
-        .then(comments => {
-            if (comments.length === 0) return;
+async function loadComments(e, postId) {
+    try {
+        const response = await fetch(apiUrl + `/posts/${postId}/comments?_limit=2`)
+        const comments = await response.json()
+        if (!response.ok || comments.length === 0) return
 
-            const existingComments = e.target.parentElement.querySelector('.comments');
-            if (existingComments) {
-                existingComments.remove();
-                return;
-            }
+        const existingComments = e.target.parentElement.querySelector('.comments');
+        if (existingComments) {
+            existingComments.remove();
+            return;
+        }
 
-            const commentsContainer = document.createElement('div');
-            commentsContainer.classList.add('comments');
-            commentsContainer.innerHTML = `
+        const commentsContainer = document.createElement('div');
+        commentsContainer.classList.add('comments');
+        commentsContainer.innerHTML = `
             <h4>Comments</h4>
             <ul class="comment-list"></ul>`
 
-            comments.forEach(comment => {
-                const li = document.createElement('li');
-                li.classList.add('comment-item');
-                li.innerHTML = `
+        comments.forEach(comment => {
+            const li = document.createElement('li');
+            li.classList.add('comment-item');
+            li.innerHTML = `
                     <p id="comment-name">${comment.name}</p>
                     <p id="comment-email">${comment.email}</p>
                     <p id="comment-body">${comment.body}</p>`
 
-                commentsContainer.querySelector('.comment-list').appendChild(li);
-            })
-
-            e.target.parentElement.appendChild(commentsContainer);
+            commentsContainer.querySelector('.comment-list').appendChild(li);
         })
+
+        e.target.parentElement.appendChild(commentsContainer);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-const addNewPost = (e) => {
+const addNewPost = async (e) => {
     e.preventDefault();
 
     const title = postTitle.value.trim();
     const body = postText.value.trim();
 
-    if (title && body) {
-        fetch(apiUrl + '/posts', {
+    if (!title || !body) {
+        postTips.textContent = 'Please fill in both fields.';
+        return;
+    }
+
+    try {
+        const response = await fetch(apiUrl + '/posts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -83,18 +91,17 @@ const addNewPost = (e) => {
                 body: body,
                 userId: 1
             })
-        }).then(response => {
-            return response.json();
-        }).then(post => {
-            addPostToDOM(post);
-            postForm.reset();
-            postTips.textContent = 'Post added successfully!';
-        }).catch(error => {
-            console.error(error)
-            postTips.textContent = error;
-        });
-    } else {
-        postTips.textContent = 'Please fill in both fields.';
+        })
+
+        if (!response.ok) return;
+
+        const post = await response.json();
+        addPostToDOM(post);
+        postForm.reset();
+        postTips.textContent = 'Post added successfully!';
+    } catch (error) {
+        console.error(error)
+        postTips.textContent = error;
     }
 }
 
